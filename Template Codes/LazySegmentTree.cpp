@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+.c#include<bits/stdc++.h>
 
 using namespace std;
 
