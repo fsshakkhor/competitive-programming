@@ -82,16 +82,20 @@ bool dinic_bfs()
 int dinic_dfs(int u, int f) {
   if (u == dest)
     return f;
+
   for (int &i = work[u]; i < (int) g[u].size(); i++) {
     Edge &e = g[u][i];
+
     if (e.cap <= e.f) continue;
-    int v = e.to;
-    if (dist[v] == dist[u] + 1) {
-      int df = dinic_dfs(v, min(f, e.cap - e.f));
-      if (df > 0) {
-        e.f += df;
-        g[v][e.rev].f -= df;
-        return df;
+
+    if (dist[e.to] == dist[u] + 1)
+    {
+      int flow = dinic_dfs(e.to, min(f, e.cap - e.f));
+      if (flow > 0)
+      {
+        e.f += flow;
+        g[e.to][e.rev].f -= flow;
+        return flow;
       }
     }
   }
