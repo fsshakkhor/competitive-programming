@@ -106,7 +106,7 @@ LL phi(LL n)
         {
             M/=primes[i];
             M*=(primes[i]-1);
-            while(n%primes[i])n/=primes[i];
+            while(n%primes[i] == 0)n/=primes[i];
         }
     }
     if(n>1){
