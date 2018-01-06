@@ -37,33 +37,28 @@ using namespace std;
 #define FastRead        ios_base::sync_with_stdio(0);cin.tie(nullptr);
 const int N = 22;
 int F[1 << N],n;
-int ara[1 << N];
+int ara[1000006];
 int lim = (1 << N) - 1;
 
 int main()
 {
-   FastRead
-   cin >> n;
-   FOR(i,1,n){
-      cin >> ara[i];
-      F[ara[i]] = ara[i];
-   }
-   for(int mask = 1;mask < (1 << N);mask++){
+   MEM(F,-1);
+   int n;
+   scanf("%d",&n);
+   FOR(i,1,n)scanf("%d",&ara[i]) , F[ara[i]] = ara[i];
+   LL ans = 0;
 
-      for(int i = 0;i < N;i++){
-         if(mask & (1 << i) and F[mask ^ (1 << i)]){
-            F[mask] = F[mask ^ (1 << i)];
+   for(int i = 0;i < N; ++i) {
+      for(int mask = 0; mask < (1<<N); ++mask){
+            if(mask & (1<<i) and F[mask^(1<<i)] > 0){
+               F[mask] = F[mask^(1<<i)];
+            }
          }
-      }
    }
-   FOR(i,1,n)
-   {
-      int inv = lim ^ ara[i];
-      int ans = F[inv];
-      if(ans == 0)ans = -1;
-      cout << ans << " ";
+   for(int i = 1;i<=n;i++){
+      printf("%d ",F[ara[i]^lim]);
    }
-
-
 }
+
+
 
