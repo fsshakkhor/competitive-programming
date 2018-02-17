@@ -8,15 +8,16 @@ struct point{
         return a.val<val;
     }
 };
+#define mx 1002
 priority_queue<point> Q;
 int dis[mx+5],cost[mx+5][mx+5];
-vector<int>tdlist[mx+5];
+vector<int>G[mx+5];
 
 void DJ(point node){
     int now = node.name;
-
-    for(int i=0;i<tdlist[now].size();i++){
-        int x = tdlist[now][i];
+    if(node.val != dis[now])return;
+    for(int i=0;i<G[now].size();i++){
+        int x = G[now][i];
 
         if(dis[now]+cost[now][x]<dis[x]) ///Condition
         {
