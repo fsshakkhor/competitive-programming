@@ -16,6 +16,8 @@ http://zobayer.blogspot.com/
 
 http://www.mathblog.dk/
 
+https://www.codechef.com/certification/data-structures-and-algorithms/prepare
+
 ## Segment Tree: 
 https://codeforces.com/blog/entry/22616 (Problem List)
 
