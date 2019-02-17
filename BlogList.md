@@ -1,8 +1,8 @@
 
 
-## Blog Lists:
+# Blog Lists:
 
-# Useful Websites:
+## Useful Websites:
 
 http://www.shafaetsplanet.com/ (For Beginners)
 
@@ -16,13 +16,13 @@ http://zobayer.blogspot.com/
 
 http://www.mathblog.dk/
 
-# Segment Tree: 
+## Segment Tree: 
 https://codeforces.com/blog/entry/22616 (Problem List)
 
-# Square Root Decomposition: 
+## Square Root Decomposition: 
 https://codeforces.com/blog/entry/23005 (Problem List)
 
-# Dynamic Programming:
+## Dynamic Programming:
 https://codeforces.com/blog/entry/47764 (Dp Tricks)
 
 https://codeforces.com/blog/entry/325 (Problem List)
@@ -33,34 +33,34 @@ https://codeforces.com/blog/entry/45223 (Sum over Subset Dp)
 
 https://codeforces.com/blog/entry/47932 (Dp Optimization Techniques)
 
-# Number Theory Problem List:
+## Number Theory Problem List:
 https://codeforces.com/blog/entry/49494 
 
-# Graph: 
+## Graph: 
 https://codeforces.com/blog/entry/16221 (Almost all graph related topics)
 
-# Data Structures:
+## Data Structures:
 https://codeforces.com/blog/entry/15729 (Almost all data structures)
 
-# DSU On Tree:
+## DSU On Tree:
 https://codeforces.com/blog/entry/44351 (Idea and Implementation)
 
-# MO Algorithm:
+## MO Algorithm:
 https://blog.anudeep2011.com/mos-algorithm/ (Idea and Implementation)
 
 https://codeforces.com/blog/entry/43230 (MO on path)
 
-# Heavy Light Decomposition:
+## Heavy Light Decomposition:
 https://blog.anudeep2011.com/heavy-light-decomposition/ (Idea and Implementation)
 
 
-# Persistent Segment Tree:
+## Persistent Segment Tree:
 https://blog.anudeep2011.com/persistent-segment-trees-explained-with-spoj-problems/  (Idea)
 
-# Interactive Problems:
+## Interactive Problems:
 https://codeforces.com/blog/entry/60533 (Problem List)
 
-# Miscellaneous:
+## Miscellaneous:
 https://codeforces.com/blog/entry/48417 (General Ideas)
 
 https://codeforces.com/blog/entry/23204 (Topic Wise Resources)
