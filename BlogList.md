@@ -1,10 +1,15 @@
 Blog Lists
 Useful Websites:
 http://www.shafaetsplanet.com/ (For Beginners)
+
 https://cp-algorithms.com/  
+
 https://petr-mitrichev.blogspot.com/ 
+
 https://www.hackerearth.com/blog/algorithms/ 
+
 http://zobayer.blogspot.com/ 
+
 http://www.mathblog.dk/
 
 Segment Tree: 
