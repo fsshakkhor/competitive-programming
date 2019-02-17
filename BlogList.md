@@ -22,9 +22,13 @@ https://codeforces.com/blog/entry/23005 (Problem List)
 
 # Dynamic Programming:
 https://codeforces.com/blog/entry/47764 (Dp Tricks)
+
 https://codeforces.com/blog/entry/325 (Problem List)
+
 https://codeforces.com/blog/entry/20935 (Dp On Trees)
+
 https://codeforces.com/blog/entry/45223 (Sum over Subset Dp)
+
 https://codeforces.com/blog/entry/47932 (Dp Optimization Techniques)
 
 # Number Theory Problem List:
@@ -41,6 +45,7 @@ https://codeforces.com/blog/entry/44351 (Idea and Implementation)
 
 # MO Algorithm:
 https://blog.anudeep2011.com/mos-algorithm/ (Idea and Implementation)
+
 https://codeforces.com/blog/entry/43230 (MO on path)
 
 # Heavy Light Decomposition:
@@ -55,6 +60,8 @@ https://codeforces.com/blog/entry/60533 (Problem List)
 
 # Miscellaneous:
 https://codeforces.com/blog/entry/48417 (General Ideas)
+
 https://codeforces.com/blog/entry/23204 (Topic Wise Resources)
+
 https://codeforces.com/blog/entry/55274 (Huge List of Topic wise Problems)
 
