@@ -125,7 +125,7 @@ int main()
     siv();
     int n , m;
     scanf("%d %d",&n,&m);
-    init(n,primes.size());//Initialize First. You can use 0 number nodes;
+    init(n,primes.size());//Initialize First. 0 indexing is must. nahole asnwer asbena.
     for(int i = 1;i <= n;i++){
         scanf("%d",&ara[i]);
         for(int j = 0;j < primes.size() and primes[j] <= m;j++){
