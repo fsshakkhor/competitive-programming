@@ -37,15 +37,16 @@ using namespace std;
 int n;
 int mark[71];
 int ara[71],sz,ans;
-int Ans[71],timer;
+int Ans[71];
+int Maximum[71];
 void rec(int pos)
 {
     if(sz > ans){
         ans = sz;
         for(int i = 0;i < ans;i++)Ans[i] = ara[i];
     }
-    if(sz + n - pos + 1 <= ans)return; //Not possible even if we take all
-
+    if(sz + n - pos + 1 <= ans)return;
+    if(Maximum[n - pos + 1] + sz <= ans)return;
     if(pos == n + 1)return;
     if(mark[pos] == 0){
 
@@ -60,7 +61,7 @@ void rec(int pos)
         sz--;
         for(int i = sz-1;i >=0;i--){
             int d = pos - ara[i];
-            int ele = pos + 2 * d;
+            int ele = pos + (d << 1);
             if(ele > n)break;
             mark[ele]--;
         }
@@ -69,11 +70,17 @@ void rec(int pos)
 }
 int main()
 {
-//    fRead("art.in");
-//    fWrite("art.out");
-    cin >> n;
+    fRead("art.in");
+    fWrite("art.out");
     const clock_t begin_time = clock();
-    rec(1);
+    for(int i = 1;i <= 70;i++)Maximum[i] = 100;
+    int X;
+    cin >> X;
+    for(n = 1;n <= X;n++){
+        rec(1);
+
+        Maximum[n] = ans;
+    }
     cout << ans << "\n";
     for(int i = 0;i < ans;i++)
     {
