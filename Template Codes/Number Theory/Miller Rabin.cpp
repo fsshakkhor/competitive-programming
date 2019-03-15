@@ -28,8 +28,9 @@ LL ModularExponentiation(LL a, LL n, LL m)
 bool Witness(LL a, LL n)
 {
 	LL u=n-1;
-  int t=0;
+    int t=0;
 	while(!(u&1)){u>>=1; t++;}
+
 	LL x0=ModularExponentiation(a, u, n), x1;
 	for(int i=1;i<=t;i++)
 	{
@@ -59,22 +60,44 @@ bool IsPrimeFast(LL n, int TRIAL)
   }
   return true;
 }
+
+LL SQRT(LL n)
+{
+    LL lo = 0,hi = 1e9,mid,ans;
+    while(lo <= hi){
+        mid = (lo + hi)/2;
+        if(mid * mid <= n){
+            lo = mid + 1;
+            ans = mid;
+        }else {
+            hi = mid - 1;
+        }
+    }
+    return ans;
+}
 int main()
 {
     srand(time(NULL));
-    int N = 1005;;
-    vector<int>v;
-    for(int i = 1;i < N;i += 22){
-        if(IsPrimeFast(i,1))v.push_back(i);
+    LL n;
+    cin >> n;
+    LL ret = 1;
+    for(int i = 2;i <= 2e6;i++){
+        LL cnt = 0;
+        while(n % i == 0){
+            cnt++;
+            n/=i;
+        }
+        if(cnt > 0)ret = ret * (cnt + 1);
     }
 
-    int t;
-    scanf("%d",&t);
-    while(t--){
-        int n;
-        scanf("%d",&n);
-        int num = *lower_bound(v.begin(),v.end(),n);
-        printf("%d\n",num);
+    if(n == 1);
+    else if(IsPrimeFast(n,1)){
+        ret = ret * 2;
+    }else{
+        LL sq = SQRT(n);
+
+        if(sq * sq == n)ret = ret * 3;
+        else ret = ret * 2 * 2;
     }
-    return 0;
+    cout << ret << "\n";
 }
