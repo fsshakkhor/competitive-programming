@@ -39,62 +39,39 @@ using namespace std;
 #define REV(v) reverse(v.begin(),v.end())
 
 #define FastRead ios_base::sync_with_stdio(0);cin.tie(nullptr);
-const int N = 500005;
-LL ara[N],n,k = 20,bara[N];
-LL table[N][21];
 
+const int N = 100005;
+int ara[N],n,q,bara[N];
+int table[N][18];
+int save[N];
 void sparsTable() {
     for(int i = 0; i < n; i++) table[i][0] = ara[i];
-    for(int j = 1; (1 << j) <= n; j++) for(int i = 0; i + (1 << j) <= n; i++) table[i][j] = __gcd( table[i][j - 1], table[i + (1 << (j - 1))][j - 1] );
+    for(int j = 1; save[j] <= n; j++) for(int i = 0; i + save[j] <= n; i++) table[i][j] = max( table[i][j - 1], table[i + (save[j-1])][j - 1] );
 }
-LL query(int x, int y) {
+int LOG[N];
+int query(int x, int y) {
     if(x == y)return ara[x];
     if(x > y) swap(x, y);
-    LL k = log2(y - x);
-    return __gcd( table[x][k], table[y - (1 << k) + 1][k] );
+    int k = LOG[y - x];
+    return max( table[x][k], table[y - save[k] + 1][k] );
 }
+
 int main()
 {
-    scanf("%lld",&n);
-    for(LL i = 0;i < n;i++)scanf("%lld",&ara[i]);
-    int index = 1;
-    bara[0] = ara[0];
-    for(int i = 1;i < n;i++){
-        if(ara[i] == ara[i - 1])continue;
-        bara[index++] = ara[i];
-    }
-    n = index;
-    for(int i = 0;i < n;i++)ara[i] = bara[i];
-
-    sparsTable();
-
-    LL l,r;
-
-
-    unordered_set<LL>st;
-    bool ok = 0;
-    for(int i = 0;i < n;i++){
-        index = i;
-        while(index < n){
-            int lo = index , hi = n - 1,mid,ans;
-            LL g = query(i,index);
-            if(g == 1){
-                ok = 1;
-                break;
-            }
-            while(lo <= hi){
-                mid = (lo + hi)/2;
-                if(g == query(i,mid)){
-                    ans = mid;
-                    lo = mid + 1;
-                }else{
-                    hi = mid - 1;
-                }
-            }
-            st.insert(g);
-            index = ans + 1;
+    for(int i = 0;i < N;i++)LOG[i] = log2(i);
+    for(int i = 0;i < 20;i++)save[i] = 1 << i;
+    int t,cases = 0;
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d %d",&n,&q);
+        for(int i = 0;i < n;i++)scanf("%d",&ara[i]);
+        sparsTable();
+        printf("Case #%d:\n",++cases);
+        while(q--){
+            int l ,r;
+            scanf("%d %d",&l,&r);l--;r--;
+            printf("%d\n",query(l,r));
         }
+
     }
-    if(ok)st.insert(1);
-    printf("%d\n",(int)st.size());
 }
