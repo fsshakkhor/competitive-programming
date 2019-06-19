@@ -32,3 +32,19 @@ public class HelloWorld {
 	}
 }
 ```
+* **Collections.Sort()** : works for Collections such as Arraylist, Vector etc.
+```Java
+public class HelloWorld {
+	public static void main(String[] args){
+        ArrayList<String> al = new ArrayList<String>(); 
+        al.add("Welcome"); 
+        al.add("Friends"); 
+        
+        Collections.sort(al);
+        for(int i = 0;i < al.size();i++) {
+        	System.out.print(al.get(i) + " ");
+        }
+
+	}
+}
+```
