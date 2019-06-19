@@ -1,8 +1,8 @@
 ## Reverse a String
-`
+
+```Java
 class Reverse
 {
-	// Function to reverse a string in Java using StringBuilder
 	public static String reverse(String str)
 	{
 		return new StringBuilder(str).reverse().toString();
@@ -12,9 +12,8 @@ class Reverse
 	{
 		String str = "Techie Delight";
 
-		// Note that string is immutable in Java
 		str = reverse(str);
 
 		System.out.println("Reverse of the given string is : " + str);
 	}
-}
+}```
