@@ -18,3 +18,45 @@ public class HelloWorld {
 }
 
 ```
+# Java TreeMap
+
+```Java
+
+import java.util.*;
+
+
+public class HelloWorld {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		TreeMap<Integer,Integer> mp = new TreeMap<>();
+		for(int i = 0;i < n;i++) {
+			int v = sc.nextInt();
+			if(mp.containsKey(v)) {
+				int c = mp.get(v);
+				mp.put(v,c + 1);
+			}else {
+				mp.put(v, 1);
+			}
+		}
+		if(mp.size() == 2) {
+			int values[] = new int[2];
+			int key[] = new int[2];
+			int index = 0;
+			for (Map.Entry<Integer, Integer> mapEntry  : mp.entrySet()) {
+			    values[index] = mapEntry.getValue();
+			    key[index] = mapEntry.getKey();
+			    index++;
+			}
+			if(values[0] == values[1]) {
+				System.out.println("YES");
+				System.out.println(key[0] + " " + key[1]);
+			}else {
+				System.out.println("NO");
+			}
+		}else {
+			System.out.println("NO");
+		}
+	}
+}
+```
