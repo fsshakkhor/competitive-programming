@@ -1,4 +1,4 @@
-* String to Character Array
+# String to Character Array
 
 ```Java
 String str = sc.next();
