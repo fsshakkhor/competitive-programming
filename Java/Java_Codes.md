@@ -49,3 +49,5 @@ public class HelloWorld {
 }
 
 ```
+
+* **Arrays.sort(Integer)** is more faster than **Arrays.sort(int)** in the worst case. The first one uses Merge Sort and the later on uses Quick Sort. 
