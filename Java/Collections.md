@@ -60,3 +60,48 @@ public class HelloWorld {
 	}
 }
 ```
+
+# Java Priority Queue
+
+```Java
+
+import java.util.*;
+
+
+public class HelloWorld {
+	
+    static Comparator<Long> PQComparator = new Comparator<Long>() {
+        @Override
+        public int compare(Long s1, Long s2) {
+            return (int)(s1 - s2);
+        }
+    };
+    
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		
+		Long ara[] = new Long[n];
+	    PriorityQueue<Long> Q = new PriorityQueue<>(PQComparator);
+		for(int i = 0;i < n;i++) {
+			ara[i] = sc.nextLong();
+			Q.add(ara[i]);
+		}
+		int ans = 0;
+		while(Q.peek() < k) {
+			if(Q.size() == 1)break;
+			Long a = Q.peek();
+			Q.remove();
+			Long b = Q.peek();
+			Q.remove();
+			Q.add(a + 2 * b);
+			ans++;
+		}
+		if(Q.peek() < k) {
+			ans = -1;
+		}
+		System.out.println(ans);
+	}
+}
+```
