@@ -45,7 +45,8 @@ https://codeforces.com/blog/entry/16221 (Almost all graph related topics)
 https://codeforces.com/blog/entry/15729 (Almost all data structures)
 
 # Hash
-http://codeforces.com/blog/entry/60445
+http://codeforces.com/blog/entry/
+
 http://codeforces.com/blog/entry/60442
 
 ## DSU On Tree:
