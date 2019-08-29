@@ -1,0 +1,187 @@
+//https://codeforces.com/contest/163/problem/E
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define fRead(x)        freopen(x,"r",stdin)
+#define fWrite(x)       freopen (x,"w",stdout)
+
+#define LL              long long
+#define ULL             unsigned long long
+#define ff              first
+#define ss              second
+#define pb              push_back
+#define INF             2e16
+#define PI              acos(-1.0)
+#define mk              make_pair
+#define pii             pair<int,int>
+#define pll             pair<LL,LL>
+
+
+#define min3(a,b,c)     min(a,min(b,c))
+#define max3(a,b,c)     max(a,max(b,c))
+#define min4(a,b,c,d)   min(a,min(b,min(c,d)))
+#define max4(a,b,c,d)   max(a,max(b,max(c,d)))
+#define SQR(a)          ((a)*(a))
+#define FOR(i,a,b)      for(int i=a;i<=b;i++)
+#define ROF(i,a,b)      for(int i=a;i>=b;i--)
+#define REP(i,b)        for(int i=0;i<b;i++)
+#define MEM(a,x)        memset(a,x,sizeof(a))
+#define ABS(x)          ((x)<0?-(x):(x))
+
+#define SORT(v)         sort(v.begin(),v.end())
+#define REV(v)          reverse(v.begin(),v.end())
+
+#define FastRead        ios_base::sync_with_stdio(0);cin.tie(nullptr);
+
+
+const int N = 100005;
+const int M = 1000005;
+
+string query[N], s;
+int n, k;
+LL ans;
+bool mark[N];
+
+int bit[M];
+
+void Update(int idx,int val)
+{
+    while(idx < M){
+        bit[idx] += val;
+        idx += (idx & -idx);
+    }
+}
+int Query(int idx)
+{
+    int ret = 0;
+    while(idx > 0){
+        ret += bit[idx];
+        idx -= (idx & -idx);
+    }
+    return ret;
+}
+vector<int>g[M];
+int st[M],ed[M],loc[M],deg[M];
+void dfs(int node,int pre)
+{
+    static int timer = 0;
+    st[node] = ++timer;
+
+    for(int i : g[node]){
+        if(i == pre)continue;
+        dfs(i,node);
+    }
+    ed[node] = timer;
+}
+
+int id[M];
+struct AC {
+  int N, P;
+  vector<vector<int>> next;
+  vector<int> link, out_link;
+  vector<unordered_set <int>> out;
+  AC(): N(0), P(0) { node(); }
+  int node() {
+    next.emplace_back(26, 0);
+    link.emplace_back(0);
+    out_link.emplace_back(0);
+    unordered_set<int>tempo;
+    out.emplace_back(tempo);
+    return N++;
+  }
+  int add_pattern(const string T) {
+    int u = 0;
+    for (auto c : T) {
+      if (!next[u][c - 'a']) next[u][c - 'a'] = node();
+      u = next[u][c - 'a'];
+    }
+    out[u].insert(P);
+
+    id[P] = u;
+    return P++;
+  }
+  void vanish(int p){
+    int u = id[p];
+    Update(st[u],-1);
+    Update(ed[u] + 1,1);
+  }
+  void reappear(int p){
+    int u = id[p];
+    Update(st[u],1);
+    Update(ed[u] + 1,-1);
+  }
+  void recalc()
+  {
+      for(int i = 0;i < out.size();i++){
+        if(out[i].size() > 0){
+            Update(st[i],1);
+            Update(ed[i] + 1,-1);
+        }
+      }
+  }
+  void compute() {
+    queue<int> q;
+    for (q.push(0); !q.empty(); ) {
+      int u = q.front(); q.pop();
+      // automaton:
+      for (int c = 0; c < 26; ++c) {
+        int v = next[u][c];
+        if (!v) next[u][c] = next[link[u]][c];
+        else {
+          link[v] = u ? next[link[u]][c] : 0;
+          out_link[v] = out[link[v]].empty() ? out_link[link[v]] : link[v];
+          q.push(v);
+        }
+      }
+    }
+  }
+  int advance(int u, char c) {
+
+    while (u && !next[u][c - 'a']) u = link[u];
+    u = next[u][c - 'a'];
+    return u;
+  }
+  void match(const string S) {
+    int u = 0;
+    for (int i = 0; i < S.size(); ++i) {
+      char c = S[i];
+      u = advance(u, c);
+      ans += Query(st[u]);
+    }
+  }
+} aho;
+
+
+
+int main()
+{
+    FastRead
+    cin >> n >> k;
+    for(int i = 1;i <= k;i++){
+        cin >> query[i];
+        aho.add_pattern(query[i]);
+        mark[i - 1] = 1;
+    }
+    aho.compute();
+
+    for(int i = 0;i < aho.out_link.size();i++){
+        g[aho.out_link[i]].push_back(i);
+    }
+    dfs(0,0);
+    aho.recalc();
+    while(n--){
+        char ch;
+        cin >> ch;
+        if(ch == '?'){
+            cin >> s;
+            ans = 0;
+            aho.match(s);
+            cout << ans << "\n";
+        }else{
+            int p;cin >> p;p--;
+            if(ch == '+' and mark[p] == 0)aho.reappear(p) , mark[p] = 1;
+            if(ch == '-' and mark[p] == 1)aho.vanish(p) , mark[p] = 0;
+        }
+    }
+}
